@@ -25,23 +25,23 @@ const userSchema = new mongoose.Schema(
     role: {
       type: String,
       required: true,
-      enum: ['business', 'student'],
+      enum: ["business", "student"],
       index: true,
     },
     phone: {
       type: String,
-      default: '',
+      default: "",
       trim: true,
     },
     location: {
-      type: String,
-      default: '',
-      trim: true,
+      city: { type: String, default: "", trim: true },
+      area: { type: String, default: "", trim: true },
+      pincode: { type: String, default: "", trim: true },
     },
     status: {
       type: String,
-      enum: ['active', 'suspended', 'pending'],
-      default: 'active',
+      enum: ["active", "suspended", "pending"],
+      default: "active",
     },
     lastLoginAt: {
       type: Date,
@@ -50,7 +50,7 @@ const userSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 module.exports = mongoose.model('User', userSchema);
