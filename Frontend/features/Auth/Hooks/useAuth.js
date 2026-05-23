@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import { Authcontext } from "../Auth.stateContext.jsx";
-import { getuser, login, logout, register } from "../api/auth.api";
+import { getuser, login, logout, otpSubmit, register } from "../api/auth.api";
 import { toast } from "react-toastify";
 
 // custom hook for user and loading state handling
@@ -27,6 +27,24 @@ export default function useAuth() {
       throw error;
     } finally {
       setloading(false);
+    }
+  }
+
+  async function handleOtpSubmit({otp,email}) {
+    setloading(true)
+    seterror(null)
+    try {
+      const response = await otpSubmit({otp,email})
+      setuser({
+        token: response.token,
+        user: response.user,
+        profile: response.profile,
+      });
+      toast.success("Email verified successfully!");
+    } catch (error) {
+      throw error
+    }finally{
+      setloading(false)
     }
   }
 
@@ -94,6 +112,7 @@ export default function useAuth() {
     handleregister,
     handlelogin,
     handlelogout,
+    handleOtpSubmit,
     error,
     seterror,
   };

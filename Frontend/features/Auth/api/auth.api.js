@@ -45,9 +45,22 @@ async function getuser() {
     }
 }
 
+async function otpSubmit({otp,email}) {
+    try {
+        const response = await axios.post("http://localhost:3000/api/auth/verify-email",
+            {otp,email},
+            {withCredentials: true}
+        )
+        return response.data
+    } catch (error) {
+        throw error
+    }
+}
+
 export {
     register,
     login,
     logout,
-    getuser
+    getuser,
+    otpSubmit
 }
