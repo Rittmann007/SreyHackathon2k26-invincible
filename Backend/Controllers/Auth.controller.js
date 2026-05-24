@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const { serialize } = require('cookie');
 const User = require('../Models/User');
 const StudentProfile = require('../Models/StudentProfile');
 const BusinessProfile = require('../Models/BusinessProfile');
@@ -17,22 +18,29 @@ const cookieOptions = {
   sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
 };
 
-// Helper to set auth cookie with a graceful fallback if the runtime
-// rejects the `sameSite` option (older cookie libs may not accept 'none').
-function setAuthCookie(res, name, value, options) {
-  try {
-    res.cookie(name, value, options);
-  } catch (err) {
-    const fallback = { ...options };
-    if (fallback && Object.prototype.hasOwnProperty.call(fallback, 'sameSite')) {
-      delete fallback.sameSite;
-    }
-    try {
-      res.cookie(name, value, fallback);
-    } catch (err2) {
-      res.cookie(name, value);
-    }
-  }
+function buildCookieHeader(name, value, options = {}) {
+  return serialize(name, value, {
+    path: '/',
+    httpOnly: true,
+    secure: options.secure ?? process.env.NODE_ENV === 'production',
+    sameSite: options.sameSite ?? (process.env.NODE_ENV === 'production' ? 'none' : 'lax'),
+    maxAge: options.maxAge,
+  });
+}
+
+function setAuthCookie(res, value) {
+  res.append('Set-Cookie', buildCookieHeader('token', value, cookieOptions));
+}
+
+function clearAuthCookie(res) {
+  res.append(
+    'Set-Cookie',
+    buildCookieHeader('token', '', {
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+      maxAge: 0,
+    }),
+  );
 }
 
 const getTokenFromRequest = (req) => {
@@ -228,7 +236,7 @@ const login = async (req, res) => {
 
     const token = signToken(user);
 
-    setAuthCookie(res, "token", token, cookieOptions);
+    setAuthCookie(res, token);
     return res.status(200).json({
       success: true,
       message: "Login successful",
@@ -289,27 +297,12 @@ const logout = async (req, res) => {
       await TokenBlacklist.create({ token });
     }
 
-    const options = {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
-    };
+    clearAuthCookie(res);
 
-    try {
-      return res.status(200).clearCookie("token", options).json({
-        success: true,
-        message: "user logged out",
-      });
-    } catch (err) {
-      const fallback = { ...options };
-      if (fallback && Object.prototype.hasOwnProperty.call(fallback, 'sameSite')) {
-        delete fallback.sameSite;
-      }
-      return res.status(200).clearCookie("token", fallback).json({
-        success: true,
-        message: "user logged out",
-      });
-    }
+    return res.status(200).json({
+      success: true,
+      message: "user logged out",
+    });
   } catch (error) {
     return res.status(500).json({
       success: false,
@@ -370,7 +363,7 @@ async function verifyEmail(req,res) {
 
   const token = signToken(user);
 
-   setAuthCookie(res, "token", token, cookieOptions);
+  setAuthCookie(res, token);
     return res.status(200).json({
       success: true,
       message: "Email verified successfully",
