@@ -7,7 +7,7 @@ const {
   studentOnly,
 } = require('../middleware/roleguard.middleware');
 
-const taskController = require('../controllers/Task.controller');
+const taskController = require('../Controllers/Task.controller');
 
 // Create task
 router.post(

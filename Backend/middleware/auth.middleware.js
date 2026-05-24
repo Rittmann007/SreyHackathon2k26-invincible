@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const TokenBlacklist = require('../models/TokenBlacklist.model');
+const TokenBlacklist = require('../Models/TokenBlacklist.model');
 
 const JWT_SECRET = process.env.JWT_SECRET || 'your_jwt_secret';
 

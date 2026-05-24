@@ -10,7 +10,7 @@ const {
   businessOnly,
 } = require('../middleware/roleguard.middleware');
 
-const profileController = require('../controllers/profile.controller');
+const profileController = require('../Controllers/profile.controller');
 
 // ══════════════════════════════════════════
 // SHARED USER ROUTES

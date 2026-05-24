@@ -8,7 +8,7 @@ const {
   studentOnly,
 } = require('../middleware/roleguard.middleware');
 
-const pitchController = require('../controllers/pitch.controller');
+const pitchController = require('../Controllers/pitch.controller');
 
 // Submit pitch
 router.post(

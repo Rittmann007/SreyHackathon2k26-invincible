@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
-const User = require('../models/User');
-const StudentProfile = require('../models/StudentProfile');
-const BusinessProfile = require('../models/BusinessProfile');
-const PortfolioItem = require('../models/PortfolioItem');
+const User = require('../Models/User');
+const StudentProfile = require('../Models/StudentProfile');
+const BusinessProfile = require('../Models/BusinessProfile');
+const PortfolioItem = require('../Models/PortfolioItem');
 
 const {
   uploadFile,

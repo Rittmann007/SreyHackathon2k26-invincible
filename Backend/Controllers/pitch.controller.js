@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 
-const Pitch = require('../models/Pitch');
-const Task = require('../models/Task');
-const TaskProgress = require('../models/TaskProgress');
-const Payment = require('../models/Payment');
-const StudentProfile = require('../models/StudentProfile');
-const PortfolioItem = require('../models/PortfolioItem');
-const User = require('../models/User');
+const Pitch = require('../Models/Pitch');
+const Task = require('../Models/Task');
+const TaskProgress = require('../Models/TaskProgress');
+const Payment = require('../Models/Payment');
+const StudentProfile = require('../Models/StudentProfile');
+const PortfolioItem = require('../Models/PortfolioItem');
+const User = require('../Models/User');
 const { predictPitch } = require('../services/gradio.service');
 
 const getAuthenticatedUserId = (req) => req.user?.id || req.user?._id;

@@ -1,10 +1,10 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const User = require('../models/User');
-const StudentProfile = require('../models/StudentProfile');
-const BusinessProfile = require('../models/BusinessProfile');
-const TokenBlacklist = require('../models/TokenBlacklist.model');
-const otpModel = require('../models/Otp.model');
+const User = require('../Models/User');
+const StudentProfile = require('../Models/StudentProfile');
+const BusinessProfile = require('../Models/BusinessProfile');
+const TokenBlacklist = require('../Models/TokenBlacklist.model');
+const otpModel = require('../Models/Otp.model');
 const sendEmail = require("../services/email.service")
 const {generateOtp,getOtpHtml} = require("../utils/Otp")
 

@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
-const Task = require('../models/Task');
-const Pitch = require('../models/Pitch');
-const TaskProgress = require('../models/TaskProgress');
+const Task = require('../Models/Task');
+const Pitch = require('../Models/Pitch');
+const TaskProgress = require('../Models/TaskProgress');
 
 const getAuthenticatedUserId = (req) => req.user?.id || req.user?._id;
 
