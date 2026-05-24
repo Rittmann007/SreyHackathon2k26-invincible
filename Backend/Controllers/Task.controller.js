@@ -26,6 +26,21 @@ exports.createTask = async (req, res) => {
       location,
     } = req.body;
 
+    // Normalize location: accept string (city) or object { city, area, pincode }
+    let normalizedLocation = undefined;
+    if (location !== undefined && location !== null) {
+      if (typeof location === 'string') {
+        const trimmed = location.trim();
+        if (trimmed) normalizedLocation = { city: trimmed, area: '', pincode: '' };
+      } else if (typeof location === 'object' && (location.city || location.area || location.pincode)) {
+        normalizedLocation = {
+          city: location.city || '',
+          area: location.area || '',
+          pincode: location.pincode || '',
+        };
+      }
+    }
+
     if (new Date(deadline) <= new Date()) {
       return res
         .status(400)
@@ -41,7 +56,7 @@ exports.createTask = async (req, res) => {
       title,
       description,
       category,
-      location: location || undefined,
+      location: normalizedLocation,
       budget,
       deadline,
       requiredSkills: requiredSkills || [],
@@ -365,7 +380,20 @@ exports.updateTask = async (req, res) => {
 
     editable.forEach((field) => {
       if (req.body[field] !== undefined) {
-        task[field] = req.body[field];
+        if (field === 'location') {
+          const loc = req.body.location;
+          if (typeof loc === 'string') {
+            task.location = { city: loc.trim(), area: '', pincode: '' };
+          } else if (typeof loc === 'object') {
+            task.location = {
+              city: loc.city || task.location?.city || '',
+              area: loc.area || task.location?.area || '',
+              pincode: loc.pincode || task.location?.pincode || '',
+            };
+          }
+        } else {
+          task[field] = req.body[field];
+        }
       }
     });
 
