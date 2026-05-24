@@ -26,7 +26,12 @@ function Navbar() {
 
   const handleDashboard = () => {
     setOpen(false);
-    navigate('/dashbord');
+    navigate('/dashboard');
+  };
+
+  const handleEditProfile = () => {
+    setOpen(false);
+    navigate(role === 'business' ? '/business/profile' : '/student/profile');
   };
 
   const handleLogout = async () => {
@@ -119,6 +124,15 @@ function Navbar() {
                   </div>
 
                   <div className="grid gap-2 p-4">
+                    {role === 'business' || role === 'student' ? (
+                      <button
+                        type="button"
+                        onClick={handleEditProfile}
+                        className="rounded-2xl border border-slate-950/10 bg-white/55 px-4 py-3 text-sm font-bold text-slate-950 shadow-sm transition hover:bg-white/70"
+                      >
+                        Edit profile
+                      </button>
+                    ) : null}
                     <button
                       type="button"
                       onClick={handleDashboard}
