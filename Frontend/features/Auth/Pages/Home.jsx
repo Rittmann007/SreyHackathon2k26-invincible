@@ -33,7 +33,7 @@ export default function Home() {
         <section className="relative overflow-hidden bg-[linear-gradient(135deg,#74b9ff_0%,#a29bfe_50%,#74b9ff_100%)] rounded-3xl mt-4 px-4 py-16 text-center shadow-[0_4px_20px_rgba(0,0,0,0.02)]">
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.18),transparent_30%),radial-gradient(circle_at_top_right,rgba(255,255,255,0.12),transparent_26%),linear-gradient(120deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02)_40%,rgba(255,255,255,0.12))]" />
           <div className="relative z-10 mx-auto flex max-w-4xl flex-col items-center">
-            <h1 className="text-6xl font-black tracking-[-0.05em] text-slate-950 sm:text-7xl lg:text-8xl drop-shadow-sm select-none">
+            <h1 className="text-6xl font-black tracking-tighter text-slate-950 sm:text-7xl lg:text-8xl drop-shadow-sm select-none">
               TaskHive
             </h1>
             <p className="mt-4 max-w-3xl text-base font-semibold leading-8 text-slate-800 sm:text-lg lg:text-xl">
@@ -63,12 +63,12 @@ export default function Home() {
             {HL_DATA.map((c) => {
               const flip = !!flipped[c.id];
               return (
-                <div key={c.id} className={`rounded-2xl border p-7 transition-all duration-300 transform min-h-[250px] flex flex-col justify-between ${flip ? 'bg-[linear-gradient(135deg,#74b9ff_0%,#a29bfe_100%)] border-white/40 text-slate-950 scale-[1.02] shadow-lg' : 'border-slate-200 bg-white text-slate-600 shadow-[0_10px_30px_rgba(0,0,0,0.01)]'}`}>
+                <div key={c.id} className={`rounded-2xl border p-7 transition-all duration-300 transform min-h-62.5 flex flex-col justify-between ${flip ? 'bg-[linear-gradient(135deg,#74b9ff_0%,#a29bfe_100%)] border-white/40 text-slate-950 scale-[1.02] shadow-lg' : 'border-slate-200 bg-white text-slate-600 shadow-[0_10px_30px_rgba(0,0,0,0.01)]'}`}>
                   <div className="flex justify-between items-start w-full">
                     <div><span className="mb-2 block text-3xl">{c.icon}</span><h3 className="text-lg font-black text-slate-950 tracking-tight">{c.title}</h3></div>
                     <button onClick={() => setFlipped(p => ({ ...p, [c.id]: !p[c.id] }))} className={`w-8 h-8 rounded-full flex items-center justify-center font-black text-lg shadow-sm border border-slate-200/50 cursor-pointer transition-all duration-200 ${flip ? 'bg-slate-950/10 text-slate-950 rotate-45' : 'bg-slate-100 text-[#0070f3]'}`}>+</button>
                   </div>
-                  <div className="mt-4 flex-grow flex items-start">{!flip ? <p className="text-sm leading-6 font-medium text-justify text-slate-600">{c.text}</p> : <ul className="list-disc pl-5 text-xs font-bold leading-5 space-y-1.5 text-left text-slate-950">{c.bullets.map((b, idx) => <li key={idx}>{b}</li>)}</ul>}</div>
+                  <div className="mt-4 grow flex items-start">{!flip ? <p className="text-sm leading-6 font-medium text-justify text-slate-600">{c.text}</p> : <ul className="list-disc pl-5 text-xs font-bold leading-5 space-y-1.5 text-left text-slate-950">{c.bullets.map((b, idx) => <li key={idx}>{b}</li>)}</ul>}</div>
                 </div>
               );
             })}
