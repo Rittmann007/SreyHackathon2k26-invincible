@@ -30,10 +30,21 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+const allowedOrigins = [
+  (process.env.FRONTEND_URL || "https://taskhiveinvincibles.vercel.app").replace(/\/$/, ""),
+  "http://localhost:5173",
+  "http://localhost:3000"
+];
+
 app.use(cors({
-  origin: "https://taskhiveinvincibles.vercel.app/",
-  credentials: true
-}))
+  origin: (origin, callback) => {
+    if (!origin) return callback(null, true);
+    const normalized = origin.replace(/\/$/, "");
+    if (allowedOrigins.includes(normalized)) return callback(null, true);
+    return callback(new Error("CORS policy: origin not allowed"));
+  },
+  credentials: true,
+}));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
