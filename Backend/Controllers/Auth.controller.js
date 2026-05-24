@@ -17,6 +17,24 @@ const cookieOptions = {
   sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
 };
 
+// Helper to set auth cookie with a graceful fallback if the runtime
+// rejects the `sameSite` option (older cookie libs may not accept 'none').
+function setAuthCookie(res, name, value, options) {
+  try {
+    res.cookie(name, value, options);
+  } catch (err) {
+    const fallback = { ...options };
+    if (fallback && Object.prototype.hasOwnProperty.call(fallback, 'sameSite')) {
+      delete fallback.sameSite;
+    }
+    try {
+      res.cookie(name, value, fallback);
+    } catch (err2) {
+      res.cookie(name, value);
+    }
+  }
+}
+
 const getTokenFromRequest = (req) => {
   if (req.cookies?.token) {
     return req.cookies.token;
@@ -210,8 +228,7 @@ const login = async (req, res) => {
 
     const token = signToken(user);
 
-    res.cookie("token", token, cookieOptions);
-
+    setAuthCookie(res, "token", token, cookieOptions);
     return res.status(200).json({
       success: true,
       message: "Login successful",
@@ -275,13 +292,24 @@ const logout = async (req, res) => {
     const options = {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
+      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
     };
 
-    return res.status(200).clearCookie("token", options).json({
-      success: true,
-      message: "user logged out",
-    });
+    try {
+      return res.status(200).clearCookie("token", options).json({
+        success: true,
+        message: "user logged out",
+      });
+    } catch (err) {
+      const fallback = { ...options };
+      if (fallback && Object.prototype.hasOwnProperty.call(fallback, 'sameSite')) {
+        delete fallback.sameSite;
+      }
+      return res.status(200).clearCookie("token", fallback).json({
+        success: true,
+        message: "user logged out",
+      });
+    }
   } catch (error) {
     return res.status(500).json({
       success: false,
@@ -340,10 +368,9 @@ async function verifyEmail(req,res) {
       profile = await BusinessProfile.findOne({ userId: user._id });
     }
 
-   const token = signToken(user);
+  const token = signToken(user);
 
-    res.cookie("token", token, cookieOptions);
-
+   setAuthCookie(res, "token", token, cookieOptions);
     return res.status(200).json({
       success: true,
       message: "Email verified successfully",
