@@ -25,9 +25,6 @@ function Register() {
   const [clientErrors, setClientErrors] = useState({});
   const [successMessage, setSuccessMessage] = useState('');
 
-  useEffect(() => {
-    if (user) navigate('/');
-  }, [user, navigate]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -110,7 +107,7 @@ function Register() {
 
     try {
       await handleregister(payload);
-      setSuccessMessage('Account created successfully.');
+      navigate("/verify-otp", { state: { email: form.email.trim() } });
       setForm(initialForm);
     } catch {
       // backend error is already exposed by useAuth.error

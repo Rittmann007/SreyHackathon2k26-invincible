@@ -13,10 +13,6 @@ function Login() {
   const [form, setForm] = useState(initialForm);
   const [clientErrors, setClientErrors] = useState({});
 
-  useEffect(() => {
-    if (user) navigate('/');
-  }, [user, navigate]);
-
   const handleChange = (event) => {
     const { name, value } = event.target;
     setForm((prev) => ({ ...prev, [name]: value }));
@@ -45,6 +41,7 @@ function Login() {
 
     try {
       await handlelogin({ email: form.email.trim(), password: form.password });
+      navigate("/dashboard")
     } catch {
       // backend error is already exposed by useAuth.error
     }
