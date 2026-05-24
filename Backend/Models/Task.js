@@ -33,6 +33,11 @@ const taskSchema = new mongoose.Schema(
       ],
       index: true,
     },
+    location: {
+      city: { type: String, default: '' },
+      area: { type: String, default: '' },
+      pincode: { type: String, default: '' },
+    },
     budget: {
       type: Number,
       required: true,
@@ -49,6 +54,11 @@ const taskSchema = new mongoose.Schema(
         trim: true,
       },
     ],
+    location: {
+      city: { type: String, default: '' },
+      area: { type: String, default: '' },
+      pincode: { type: String, default: '' },
+    },
     status: {
       type: String,
       enum: [
