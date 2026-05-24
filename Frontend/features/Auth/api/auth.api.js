@@ -1,8 +1,10 @@
 import axios from "axios"
 
+const API_BASE = import.meta.env.VITE_API_BASE_URL || 'https://sreyhackathon2k26-invincible.onrender.com/api';
+
 async function register(payload) {
     try {
-        const response = await axios.post("http://localhost:3000/api/auth/register",
+        const response = await axios.post(`${API_BASE}/auth/register`,
             payload,
             {withCredentials:true}
         )
@@ -14,7 +16,7 @@ async function register(payload) {
 
 async function login({email,password}) {
     try {
-        const response = await axios.post("http://localhost:3000/api/auth/login",
+        const response = await axios.post(`${API_BASE}/auth/login`,
             {email,password},
             {withCredentials: true} // for access to cookies
         )
@@ -26,7 +28,7 @@ async function login({email,password}) {
 
 async function logout() {
     try {
-        const response = await axios.post("http://localhost:3000/api/auth/logout",{},
+        const response = await axios.post(`${API_BASE}/auth/logout`,{},
             {withCredentials: true}
         )
     } catch (error) {
@@ -36,7 +38,7 @@ async function logout() {
 
 async function getuser() {
     try {
-        const response = await axios.get("http://localhost:3000/api/auth/me",
+        const response = await axios.get(`${API_BASE}/auth/me`,
             {withCredentials: true}
         )
         return response.data
@@ -47,7 +49,7 @@ async function getuser() {
 
 async function otpSubmit({otp,email}) {
     try {
-        const response = await axios.post("http://localhost:3000/api/auth/verify-email",
+        const response = await axios.post(`${API_BASE}/auth/verify-email`,
             {otp,email},
             {withCredentials: true}
         )
