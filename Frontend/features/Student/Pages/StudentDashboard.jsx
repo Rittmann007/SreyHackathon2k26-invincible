@@ -199,15 +199,13 @@ function StudentDashboard() {
                     {tasks.map((task) => (
                       <article key={task._id || task.id} className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
                         {(() => {
-                          const rawLoc = task.businessId?.location || task.location || task.city || task.business?.location;
+                          const rawLoc = task.location || task.businessId?.location || task.business?.location || task.city;
                           const locationText = rawLoc ? (typeof rawLoc === 'string' ? rawLoc : rawLoc.city || rawLoc.name || '') : '';
 
                           return (
                             <>
                               <h3 className="font-bold text-slate-950">{task.title || task.name || 'Untitled task'}</h3>
-                              {locationText ? (
-                                <p className="mt-2 text-sm text-slate-500">Location: {locationText}</p>
-                              ) : null}
+                              <p className="mt-2 text-sm text-slate-500">Location: {locationText || '—'}</p>
                             </>
                           );
                         })()}
@@ -217,9 +215,9 @@ function StudentDashboard() {
                           <span className="rounded-full bg-white px-2 py-1">{task.status || 'Open'}</span>
                           <span className="rounded-full bg-white px-2 py-1">Pitches: {task.pitchCount ?? 0}</span>
                           {(() => {
-                            const rawLoc = task.businessId?.location || task.location || task.city || task.business?.location;
+                            const rawLoc = task.location || task.businessId?.location || task.business?.location || task.city;
                             const locationText = rawLoc ? (typeof rawLoc === 'string' ? rawLoc : rawLoc.city || rawLoc.name || '') : '';
-                            return locationText ? <span className="rounded-full bg-white px-2 py-1">{locationText}</span> : null;
+                            return <span className="rounded-full bg-white px-2 py-1">{locationText || '—'}</span>;
                           })()}
                           {task.budget ? <span className="rounded-full bg-white px-2 py-1">₹{task.budget}</span> : null}
                         </div>

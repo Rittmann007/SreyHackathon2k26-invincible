@@ -220,13 +220,18 @@ function BusinessDashboard() {
                           const taskStatus = (task.status || 'Open').trim();
                           const isTerminal = ['Completed', 'Cancelled'].includes(taskStatus);
 
+                          const rawLoc = task.location || task.businessId?.location || task.business?.location || task.city;
+                          const locationText = rawLoc ? (typeof rawLoc === 'string' ? rawLoc : rawLoc.city || rawLoc.name || '') : '';
+
                           return (
                             <>
                         <h3 className="font-bold text-slate-950">{task.title || task.name || 'Untitled task'}</h3>
+                        <p className="mt-2 text-sm text-slate-500">Location: {locationText || '—'}</p>
                         <p className="mt-1 text-sm text-slate-600 line-clamp-3">{task.description || task.brief || 'No description provided.'}</p>
                         <div className="mt-3 flex flex-wrap gap-2 text-xs font-semibold text-slate-600">
                           <span className="rounded-full bg-white px-2 py-1">{taskStatus}</span>
                           <span className="rounded-full bg-white px-2 py-1">Pitches: {task.pitchCount ?? task.pitches?.length ?? 0}</span>
+                          <span className="rounded-full bg-white px-2 py-1">{locationText || '—'}</span>
                           {task.budget ? <span className="rounded-full bg-white px-2 py-1">₹{task.budget}</span> : null}
                         </div>
                         <div className="mt-4 flex flex-wrap gap-2">
