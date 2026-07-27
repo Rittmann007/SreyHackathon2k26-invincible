@@ -42,28 +42,31 @@ TaskHive aims to support local businesses with affordable digital services while
 ## 📸 Screenshots
 
 ### Landing Page
-<img src="screenshots/landing-page.png" width="900"/>
+<img src="screenshots/Screenshot 2026-07-27 130136.png" width="900"/>
 
 ### Login
-<img src="screenshots/login.png" width="900"/>
+<img src="screenshots/Screenshot 2026-07-27 130137.png" width="900"/>
 
 ### Register
-<img src="screenshots/register.png" width="900"/>
+<img src="screenshots/Screenshot 2026-07-27 130137 (1).png" width="900"/>
 
 ### Student Dashboard
-<img src="screenshots/student-dashboard.png" width="900"/>
+<img src="screenshots/Screenshot 2026-07-27 130142.png" width="900"/>
 
-### Browse Tasks & Submit Pitch
-<img src="screenshots/student-tasks.png" width="900"/>
+### Browse Tasks
+<img src="screenshots/Screenshot 2026-07-27 130141.png" width="900"/>
+
+### Submit Pitch
+<img src="screenshots/Screenshot 2026-07-27 130140 (1).png" width="900"/>
 
 ### Business Dashboard
-<img src="screenshots/business-dashboard.png" width="900"/>
+<img src="screenshots/Screenshot 2026-07-27 130140.png" width="900"/>
 
 ### Create Task
-<img src="screenshots/create-task.png" width="900"/>
+<img src="screenshots/Screenshot 2026-07-27 130138.png" width="900"/>
 
 ### Category Selection
-<img src="screenshots/create-task-category.png" width="900"/>
+<img src="screenshots/Screenshot 2026-07-27 130139.png" width="900"/>
 
 ### Business Profile
-<img src="screenshots/business-profile.png" width="900"/>
+<img src="screenshots/Screenshot 2026-07-27 130139 (1).png" width="900"/>
