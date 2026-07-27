@@ -42,31 +42,37 @@ TaskHive aims to support local businesses with affordable digital services while
 ## 📸 Screenshots
 
 ### Landing Page
-<img src="screenshots/Screenshot 2026-07-27 130136.png" width="900"/>
+<img src="screenshots/WhatsApp Image 2026-07-27 at 1.01.36 PM.jpeg" width="900"/>
 
 ### Login
-<img src="screenshots/Screenshot 2026-07-27 130137.png" width="900"/>
+<img src="screenshots/WhatsApp Image 2026-07-27 at 1.01.36 PM (1).jpeg" width="900"/>
 
 ### Register
-<img src="screenshots/Screenshot 2026-07-27 130137 (1).png" width="900"/>
+<img src="screenshots/WhatsApp Image 2026-07-27 at 1.01.37 PM.jpeg" width="900"/>
 
 ### Student Dashboard
-<img src="screenshots/Screenshot 2026-07-27 130142.png" width="900"/>
+<img src="screenshots/WhatsApp Image 2026-07-27 at 1.01.37 PM (1).jpeg" width="900"/>
 
 ### Browse Tasks
-<img src="screenshots/Screenshot 2026-07-27 130141.png" width="900"/>
+<img src="screenshots/WhatsApp Image 2026-07-27 at 1.01.38 PM.jpeg" width="900"/>
 
 ### Submit Pitch
-<img src="screenshots/Screenshot 2026-07-27 130140 (1).png" width="900"/>
+<img src="screenshots/WhatsApp Image 2026-07-27 at 1.01.38 PM (1).jpeg" width="900"/>
 
 ### Business Dashboard
-<img src="screenshots/Screenshot 2026-07-27 130140.png" width="900"/>
+<img src="screenshots/WhatsApp Image 2026-07-27 at 1.01.39 PM.jpeg" width="900"/>
 
 ### Create Task
-<img src="screenshots/Screenshot 2026-07-27 130138.png" width="900"/>
+<img src="screenshots/WhatsApp Image 2026-07-27 at 1.01.39 PM (1).jpeg" width="900"/>
 
 ### Category Selection
-<img src="screenshots/Screenshot 2026-07-27 130139.png" width="900"/>
+<img src="screenshots/WhatsApp Image 2026-07-27 at 1.01.40 PM.jpeg" width="900"/>
 
 ### Business Profile
-<img src="screenshots/Screenshot 2026-07-27 130139 (1).png" width="900"/>
+<img src="screenshots/WhatsApp Image 2026-07-27 at 1.01.40 PM (1).jpeg" width="900"/>
+
+### My Tasks
+<img src="screenshots/WhatsApp Image 2026-07-27 at 1.01.41 PM.jpeg" width="900"/>
+
+### Business Overview
+<img src="screenshots/WhatsApp Image 2026-07-27 at 1.01.42 PM.jpeg" width="900"/>
