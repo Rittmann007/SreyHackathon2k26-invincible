@@ -38,3 +38,32 @@ TaskHive focuses on creating a simpler and more accessible alternative to tradit
 ## Vision
 
 TaskHive aims to support local businesses with affordable digital services while creating accessible earning opportunities for students and emerging freelancers within their own communities.
+
+## 📸 Screenshots
+
+### Landing Page
+<img src="screenshots/landing-page.png" width="900"/>
+
+### Login
+<img src="screenshots/login.png" width="900"/>
+
+### Register
+<img src="screenshots/register.png" width="900"/>
+
+### Student Dashboard
+<img src="screenshots/student-dashboard.png" width="900"/>
+
+### Browse Tasks & Submit Pitch
+<img src="screenshots/student-tasks.png" width="900"/>
+
+### Business Dashboard
+<img src="screenshots/business-dashboard.png" width="900"/>
+
+### Create Task
+<img src="screenshots/create-task.png" width="900"/>
+
+### Category Selection
+<img src="screenshots/create-task-category.png" width="900"/>
+
+### Business Profile
+<img src="screenshots/business-profile.png" width="900"/>
